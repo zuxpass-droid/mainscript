@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEON CYBERPUNK - ZUXPASS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0d001a;
+      color: #00f9ff;
+      font-family: 'Roboto Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(13,0,26,0.9), rgba(13,0,26,0.9)),
+        url('https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?auto=format&fit=crop&q=80&w=1974');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    /* Matrix rain background subtle */
+    .matrix-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0.08;
+      z-index: -2;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, #00f9ff, #c300ff, #ff00aa, #00ff9d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px #00f9ff, 0 0 40px #c300ff;
+      animation: neonText 6s infinite alternate;
+    }
+
+    @keyframes neonText {
+      0% { text-shadow: 0 0 10px #00f9ff, 0 0 20px #00f9ff, 0 0 40px #c300ff; }
+      100% { text-shadow: 0 0 30px #00f9ff, 0 0 60px #c300ff, 0 0 100px #ff00aa; }
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 1.4rem;
+      color: #88ccff;
+      text-shadow: 0 0 10px #00f9ff;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: rgba(10, 5, 30, 0.65);
+      border: 2px solid #00f9ff;
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(0, 249, 255, 0.4);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(0,249,255,0.2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 0 50px #00f9ff, 0 0 100px #c300ff;
+      border-color: #c300ff;
+    }
+
+    .card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #00f9ff, #c300ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px #00f9ff;
+    }
+
+    .card p {
+      color: #a0e0ff;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid #00f9ff;
+      color: #00f9ff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background: #00f9ff;
+      color: #000;
+      box-shadow: 0 0 30px #00f9ff, 0 0 60px #c300ff;
+      transform: translateY(-3px);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+      opacity: 0;
+    }
+
+    .btn:active::after {
+      width: 300px; height: 300px;
+      opacity: 0.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666699;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(0,249,255,0.2);
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix rain subtle -->
+  <canvas class="matrix-bg" id="matrix"></canvas>
+
+  <header>
+    <h1>ZUXPAS</h1>
+    <p class="subtitle">WELCOME GUYS, jangan lupa follow tiktok @zuzhmc</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h3>ANTI VIRUS 100% V0.1</h3>
+      <p>script akan dijalankan di latar belakang. kegunaan untuk menjalankan script tidak lebih</p>
+      <a href="list.html" class="btn">EXECUTE</a>
+    </div>
+
+    <div class="card">
+      <h3>ROOT PHONE V0.7</h3>
+      <p>root sedikit sistem di hp pengguna</p>
+      <a href="list.html" class="btn">EXECUTE</a>
+    </div>
+
+    <div class="card">
+      <h3>UP +20fps di semua game/app</h3>
+      <p>cocok untuk main game karena ini bisa 35% meningkatkan fps</p>
+      <a href="list.html" class="btn">EXECUTE</a>
+    </div>
+
+    <div class="card">
+      <h3>boost cpu V0.1</h3>
+      <p>mendorong cpu agar lebih optimal</p>
+      <a href="list.html" class="btn">EXECUTE</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 ZUXPASS | Made in Kudus | Powered by Neon Dreams
+  </footer>
+
+  <!-- Matrix rain script -->
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const matrixChars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = 'rgba(13, 0, 26, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00f9ff';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener('resize', () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+  </script>
+</body>
+</html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZUXPASS NEON - HUB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0a001a;
+      color: #00f9ff;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      background: linear-gradient(90deg, #00f9ff, #c300ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px #00f9ff;
+      animation: glow 4s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #00f9ff; }
+      100% { text-shadow: 0 0 30px #00f9ff, 0 0 60px #c300ff; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: rgba(10, 5, 30, 0.7);
+      border: 2px solid #00f9ff;
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 249, 255, 0.4);
+      transition: all 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 50px #00f9ff, 0 0 100px #c300ff;
+    }
+
+    .card h3 {
+      color: #00f9ff;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid #00f9ff;
+      color: #00f9ff;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #00f9ff;
+      color: #000;
+      box-shadow: 0 0 30px #00f9ff;
+    }
+
+    #logoutBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid #ff6ec7;
+      color: #ff6ec7;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 20px #ff6ec7;
+      transition: all 0.4s;
+      z-index: 1000;
+    }
+
+    #logoutBtn:hover {
+      background: #ff6ec7;
+      color: #000;
+      box-shadow: 0 0 40px #ff6ec7;
+    }
+  </style>
+</head>
+<body>
+  <button id="logoutBtn" onclick="logout()">LOGOUT</button>
+
+  <header>
+    <h1>succes</h1>
+    <p>USER = <span id="user"></span>❤</p>
+  </header>
+
+  <div class="container">
+    <!-- Kotak lu di sini -->
+    <div class="card">
+      <h3>selamat menikmati. jika tidak jalan,uni apk dan download lagi atau hapus chace</h3>
+
+  <script>
+    // Tampilin nama user
+    document.getElementById('user').innerText = localStorage.getItem('currentUser') || 'User';
+
+    // Proteksi: kalau belum login, langsung ke login
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.replace('login.html');
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('currentUser');
+      window.location.replace('login.html');
+    }
+  </script>
+  
+</div>
+
+</body>
+</html>
+<div id="vipBadge" style="text-align:center; margin: 30px 0; display:none;">
+  <div style="background:linear-gradient(135deg,#ffd700,#ffaa00);color:#000;padding:18px 50px;border-radius:60px;font-family:'Orbitron',sans-serif;font-size:2em;font-weight:900;text-shadow:0 0 15px #ffd700,0 0 30px #ffaa00;box-shadow:0 0 40px #ffd700,0 0 80px #ffaa00;animation:vipPulse 3s infinite alternate;border:4px solid #ffea00;letter-spacing:2px;display:inline-block;">
+    VIP MEMBER
+    <br>
+    <span id="vipUserName" style="font-size:1.3em;color:#1a1a1a;">VIP Elite</span>
+  </div>
+</div>
+<script>
+  // Proteksi login (harus di atas)
+  if (localStorage.getItem('loggedIn') !== 'true') {
+    window.location.replace('login.html');
+  }
+
+  // Tampilin nama user biasa
+  const userDisplay = document.getElementById('user');
+  if (userDisplay) {
+    userDisplay.innerText = localStorage.getItem('currentUser') || 'User';
+  }
+
+  // Cek & tampilin VIP badge
+  if (localStorage.getItem('isVIP') === 'true') {
+    const badge = document.getElementById('vipBadge');
+    if (badge) {
+      badge.style.display = 'block';
+      const vipNameElem = document.getElementById('vipUserName');
+      if (vipNameElem) {
+        const name = localStorage.getItem('vipName') || 'VIP Elite';
+        vipNameElem.innerText = name.toUpperCase();
+      }
+    }
+  }
+</script>
