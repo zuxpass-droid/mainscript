@@ -1,0 +1,4 @@
+@keyframes vipPulse {
+  from { box-shadow: 0 0 30px #ffd700, 0 0 60px #ffaa00; transform: scale(1); }
+  to   { box-shadow: 0 0 60px #ffd700, 0 0 120px #ffaa00, 0 0 180px #ffea00; transform: scale(1.05); }
+}
