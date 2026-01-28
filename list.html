@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZUXPASS NEON - SUKSES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      height: 100vh;
+      background: #0a001a;
+      color: #00f9ff;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .success-container {
+      padding: 40px;
+      background: rgba(10, 5, 30, 0.7);
+      border: 3px solid #00f9ff;
+      border-radius: 25px;
+      box-shadow: 0 0 60px #00f9ff, 0 0 120px #c300ff;
+      backdrop-filter: blur(12px);
+      animation: glowPulse 5s infinite alternate;
+      max-width: 90%;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 40px #00f9ff, 0 0 80px #c300ff; transform: scale(1); }
+      100% { box-shadow: 0 0 80px #00f9ff, 0 0 160px #c300ff, 0 0 240px #ff00aa; transform: scale(1.03); }
+    }
+
+    h1 {
+      font-size: 6rem;
+      background: linear-gradient(90deg, #00f9ff, #c300ff, #ff00aa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px #00f9ff;
+      letter-spacing: 5px;
+    }
+
+    p {
+      font-size: 1.6rem;
+      color: #a0e0ff;
+      line-height: 1.6;
+      margin-top: 20px;
+      text-shadow: 0 0 10px #00f9ff;
+    }
+
+    .thanks {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-top: 40px;
+      text-shadow: 0 0 15px #ffd700, 0 0 30px #ffaa00;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <h4>SUKSES!</h4>
+    <p>script telah dijalankan, perangkat anda telah menjalankan script</p>
+    <h2>CODE=607</h2>
+    <p class="thanks">✅DONE✅</p>
+  </div>
+</body>
+</html>
