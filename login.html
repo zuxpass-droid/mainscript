@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZUXPASS NEON - LOGIN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0a001a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto Mono', monospace;
+      overflow: hidden;
+    }
+
+    .login-box {
+      background: rgba(10, 5, 30, 0.75);
+      border: 2px solid #00f9ff;
+      border-radius: 20px;
+      padding: 50px 40px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 0 40px #00f9ff, 0 0 80px #c300ff;
+      backdrop-filter: blur(12px);
+      animation: glowBox 4s infinite alternate;
+      text-align: center;
+    }
+
+    @keyframes glowBox {
+      0% { box-shadow: 0 0 20px #00f9ff, 0 0 40px #c300ff; }
+      100% { box-shadow: 0 0 50px #00f9ff, 0 0 100px #c300ff; }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #00f9ff, #c300ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #00f9ff;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      background: rgba(0, 249, 255, 0.1);
+      border: 2px solid #00f9ff;
+      border-radius: 10px;
+      color: #00f9ff;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 20px #00f9ff;
+      border-color: #c300ff;
+    }
+
+    input::placeholder { color: #88ccff; }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #00f9ff, #c300ff);
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 20px #00f9ff;
+      transition: all 0.4s;
+    }
+
+    .btn-login:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px #00f9ff, 0 0 80px #c300ff;
+    }
+
+    .error {
+      color: #ff6ec7;
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>ZUXPASS NEON</h1>
+    <p style="color:#88ccff; margin-bottom:30px;">Masukin username & password bro</p>
+
+    <input type="text" id="username" placeholder="Username" autocomplete="off">
+    <input type="password" id="password" placeholder="Password" autocomplete="off">
+
+    <button class="btn-login" onclick="login()">LOGIN</button>
+
+    <p class="error" id="errorMsg">Usn atau pw salah! Coba lagi 🗿</p>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim().toLowerCase();
+      const pass = document.getElementById('password').value.trim();
+
+      // Daftar user & password (tambahin sesuai keinginan lu)
+      const validUsers = {
+        'toya': 'madzax123',
+        'zuxpass': 'neonvip2026',
+        'kudusboy': 'jatengkeren',
+        'vipuser': 'premiumglow'
+      };
+
+      if (validUsers[user] && validUsers[user] === pass) {
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('currentUser', user);
+
+        // Redirect tanpa history (biar back button ga balik ke login)
+        history.replaceState(null, null, 'index.html');
+        setTimeout(() => {
+          window.location.replace('index.html');
+        }, 100);
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+      }
+    }
+
+    // Kalau udah login, langsung ke index
+    if (localStorage.getItem('loggedIn') === 'true') {
+      window.location.replace('index.html');
+    }
+  </script>
+</body>
+</html>
